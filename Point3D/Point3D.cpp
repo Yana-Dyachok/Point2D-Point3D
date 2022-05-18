@@ -65,24 +65,27 @@ public:
 };
 class Segment: public Point, public Point3D{
 protected:
-	double A, B, C1, C2;
+	double A, B, A1, A2, C1, C2;
 public:
 	Segment(){}
-	double Vector() {//шукаємо координати векторів АВ та АС1, АС2
+	double Vector() {//шукаємо координати векторів АВ та А1С1, А2С2
 		A = (x2 - x1);
 		B = (y2 - y1);
-		C1 = (X2 - X1);
-		C2 = (Y2 - Y1);
+		A1 = (X1 - x1); 
+                C1=  (Y1 - y1);
+                A2 = (X2 - x1);
+		C2 = (Y2 - y1);
+
 	}
 
 
-	double cos1() {//кут між векторами АВ та АС1
-		return (A * A + B * C1) / ((sqrt(pow(A, 2) + pow(B, 2))) * (sqrt(pow(A, 2) + pow(C1, 2))));
+	double cos1() {//кут між векторами АВ та А1С1
+		return (A * A1 + B * C1) / ((sqrt(pow(A, 2) + pow(B, 2))) * (sqrt(pow(A1, 2) + pow(C1, 2))));
 	}
 
 
-	double cos2() {//кут між векторами АВ та АС2
-		return (A * A + B * C1) / ((sqrt(pow(A, 2) + pow(B, 2))) * (sqrt(pow(A, 2) + pow(C2, 2))));
+	double cos2() {//кут між векторами АВ та А2С2
+		return (A * A2 + B * C2) / ((sqrt(pow(A, 2) + pow(B, 2))) * (sqrt(pow(A2, 2) + pow(C2, 2))));
 	}
 	//оскільки відрізки знаходяться в різних площинах, то пересіктись вони зможуть якщо точка (X1,Y1,Z1) або (X2,Y2,Z2) буде лежати на відрізку в Point2D, 
 	//а це можливо якщо координати z1 чи z2 будуть рівними 0, тобто точки з площини 3D будуть в площині 2D
